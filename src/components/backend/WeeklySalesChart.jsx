@@ -103,8 +103,10 @@ export default function WeeklySalesChart() {
   ];
   const [chartToDisplay, setChartToDisplay] = useState(tabs[0].type);
   return (
-    <div className="bg-slate-700 p-8 rounded-lg">
-      <h2 className="text-xl font-bold mb-4">Weekly Sales</h2>
+    <div className="dark:bg-slate-700 bg-slate-100 shadow-xl p-8 rounded-lg">
+      <h2 className="text-xl font-bold mb-4 text-slate-800 dark:text-slate-100">
+        Weekly Sales
+      </h2>
 
       <div className="p-4">
         <div className="text-sm font-medium text-center text-gray-200 border-b border-gray-400 dark:text-gray-400 dark:border-gray-700">

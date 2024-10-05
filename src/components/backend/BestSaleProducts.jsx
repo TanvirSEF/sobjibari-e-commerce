@@ -28,8 +28,8 @@ export default function BestSaleProducts() {
     ],
   };
   return (
-    <div className="bg-slate-700 p-8 rounded-lg">
-      <h2 className="text-xl font-bold mb-4">Best Selling Charts</h2>
+    <div className="dark:bg-slate-700 shadow-xl bg-slate-100 p-8 rounded-lg">
+      <h2 className="text-xl dark:text-slate-100 text-slate-800 font-bold mb-4">Best Selling Charts</h2>
       <div className="p-4">
         <Pie data={data}/>
       </div>

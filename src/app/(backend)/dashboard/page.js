@@ -12,7 +12,7 @@ export default function Dashboard() {
       <LargeCards />
       <SmallCards />
       <SalesChart />
-      <CustomDataTable />
+      {/* <CustomDataTable /> */}
     </div>
   );
 }
