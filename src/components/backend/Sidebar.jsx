@@ -22,6 +22,9 @@ import {
   LogOut,
   ChevronRight,
   ChevronDown,
+  Currency,
+  CircleDollarSign,
+  Building,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 
@@ -76,6 +79,16 @@ export default function Sidebar({ showSide, setShowSide }) {
       href: "/dashboard/staffs",
     },
     {
+      title: "Wallet",
+      icon: <CircleDollarSign />,
+      href: "/dashboard/wallet",
+    },
+    {
+      title: "SobjiBari Community",
+      icon: <Building/>,
+      href: "/dashboard/community",
+    },
+    {
       title: "Settings",
       icon: <Settings />,
       href: "/dashboard/settings",
@@ -91,8 +104,8 @@ export default function Sidebar({ showSide, setShowSide }) {
     <div
       className={
         showSide
-          ? " mt-20 sm:block sm:mt-0 dark:bg-slate-700 bg-white text-black space-y-6 w-64 shadow-xl h-screen dark:text-slate-50  fixed top-0 left-0"
-          : "mt-20 hidden sm:block sm:mt-0 dark:bg-slate-700 bg-white text-black space-y-6 w-64 shadow-xl h-screen dark:text-slate-50  fixed top-0 left-0"
+          ? " mt-20 sm:block sm:mt-0 dark:bg-slate-800 bg-white text-black space-y-6 w-64 shadow-xl h-screen dark:text-slate-100  fixed top-0 left-0 overflow-y-scroll"
+          : "mt-20 hidden sm:block sm:mt-0 dark:bg-slate-800 bg-white text-black space-y-6 w-64 shadow-xl h-screen dark:text-slate-100  fixed top-0 left-0 overflow-y-scroll"
       }
     >
       <Link

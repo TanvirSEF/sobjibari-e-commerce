@@ -10,7 +10,7 @@ export default function Layout({ children }) {
       <Sidebar showSide={showSide} setShowSide={setShowSide} />
       <div className="lg:ml-64 ml-0 flex-grow bg-slate-100 min-h-screen">
         <Navbar showSide={showSide} setShowSide={setShowSide} />
-        <main className="p-8 bg-slate-100 dark:bg-slate-950 text-white  mt-16">
+        <main className="p-8 bg-slate-100 dark:bg-slate-950 text-white min-h-screen mt-16">
           {children}
         </main>
       </div>
