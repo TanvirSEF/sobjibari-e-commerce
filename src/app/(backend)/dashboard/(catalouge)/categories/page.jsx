@@ -1,5 +1,5 @@
-import PageHeader from "@/components/backend/PageHeader";
-import TableAction from "@/components/backend/TableAction";
+import PageHeader from "../../../../../components/backend/PageHeader";
+import TableAction from "../../../../../components/backend/TableAction";
 import React from "react";
 
 const Category = () => {

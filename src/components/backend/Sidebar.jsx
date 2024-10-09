@@ -2,12 +2,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { React, useState } from "react";
-import logo from "@/assets/images/logo.png";
+import logo from "../../assets/images/logo.png";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+} from "../../components/ui/collapsible";
 
 import {
   ExternalLink,

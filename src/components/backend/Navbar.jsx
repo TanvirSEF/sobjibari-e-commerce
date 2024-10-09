@@ -8,7 +8,7 @@ import {
   X,
 } from "lucide-react";
 import React from "react";
-import userImg from "@/assets/images/tanvir.jpg";
+import userImg from "../../assets/images/tanvir.jpg";
 import Image from "next/image";
 import {
   DropdownMenu,
@@ -17,7 +17,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "../../components/ui/dropdown-menu";
 import ThemeSwitcher from "../ThemeSwitcher";
 import Link from "next/link";
 

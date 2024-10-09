@@ -1,6 +1,6 @@
 "use client";
-import Navbar from "@/components/backend/Navbar";
-import Sidebar from "@/components/backend/Sidebar";
+import Navbar from "../../components/backend/Navbar";
+import Sidebar from "../../components/backend/Sidebar";
 import { useState } from "react";
 
 export default function Layout({ children }) {
