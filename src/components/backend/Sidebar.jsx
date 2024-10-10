@@ -48,8 +48,8 @@ export default function Sidebar({ showSide, setShowSide }) {
       href: "/dashboard/coupons",
     },
     {
-      title: "Store Sliders",
-      href: "/dashboard/sliders",
+      title: "Store Banners",
+      href: "/dashboard/banners",
     },
   ];
   const sidebarLinks = [

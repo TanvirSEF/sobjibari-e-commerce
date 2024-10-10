@@ -1,9 +1,16 @@
 import React from "react";
+import PageHeader from "../../../../../components/backend/PageHeader";
+import TableAction from "../../../../../components/backend/TableAction";
 
 const page = () => {
   return (
     <div>
-      <h2>banners</h2>
+      <PageHeader
+        heading="Banners"
+        href="/dashboard/banners/new"
+        linkTitle="Add Banner"
+      />
+      <TableAction />
     </div>
   );
 };

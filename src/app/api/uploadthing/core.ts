@@ -1,3 +1,4 @@
+import { metadata } from "@/app/layout";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 const f = createUploadthing();
@@ -13,6 +14,12 @@ export const ourFileRouter = {
       return { uploadedBY: "Tanvir" };
 
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
+    }),
+  bannerImageUploader: f({ image: { maxFileSize: "2MB" } })
+    // Set permissions and file types for this FileRoute
+    .onUploadComplete(async ({ metadata, file }) => {
+      console.log("file url", file.url, metadata);
+      return { uploadedBY: "Tanvir" };
     }),
 } satisfies FileRouter;
 
