@@ -1,15 +1,12 @@
 "use client";
-import FormHeader from "../../../../../../components/backend/FormHeader";
-import { makePostRequest } from "../../../../../../lib/apiRequest";
-import ImageInput from "../../../../../../components/Forminputs/ImageInput";
-import SubmitButton from "../../../../../../components/Forminputs/Submitbtn";
-import TextareaInput from "../../../../../../components/Forminputs/TextArea";
-import TextInput from "../../../../../../components/Forminputs/TextInput";
-import { generateSlug } from "../../../../../../lib/generateSlug";
+import FormHeader from "@/components/backend/FormHeader";
+import { makePostRequest } from "@/lib/apiRequest";
+import SubmitButton from "@/components/Forminputs/Submitbtn";
+import TextInput from "@/components/Forminputs/TextInput";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { generateCoupon } from "../../../../../../lib/generateCoupon";
+import { generateCoupon } from "@/lib/generateCoupon";
 
 export default function NewCoupon() {
   const [loading, setLoading] = useState(false);

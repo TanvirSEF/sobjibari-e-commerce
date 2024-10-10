@@ -1,11 +1,10 @@
 "use client";
-import FormHeader from "../../../../../../components/backend/FormHeader";
-import { makePostRequest } from "../../../../../../lib/apiRequest";
-import ImageInput from "../../../../../../components/Forminputs/ImageInput";
-import SubmitButton from "../../../../../../components/Forminputs/Submitbtn";
-import TextareaInput from "../../../../../../components/Forminputs/TextArea";
-import TextInput from "../../../../../../components/Forminputs/TextInput";
-import { generateSlug } from "../../../../../../lib/generateSlug";
+import FormHeader from "@/components/backend/FormHeader";
+import { makePostRequest } from "@/lib/apiRequest";
+import ImageInput from "@/components/Forminputs/ImageInput";
+import SubmitButton from "@/components/Forminputs/Submitbtn";
+import TextInput from "@/components/Forminputs/TextInput";
+import { generateSlug } from "@/lib/generateSlug";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -41,9 +40,10 @@ export default function NewBanner() {
             register={register}
             errors={errors}
           />
-          <TextareaInput
-            label="Banner Link"
+          <TextInput
+            label="Banner Title"
             name="link"
+            type="url"
             register={register}
             errors={errors}
           />

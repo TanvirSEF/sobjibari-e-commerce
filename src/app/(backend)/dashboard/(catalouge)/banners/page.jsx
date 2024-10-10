@@ -1,6 +1,7 @@
 import React from "react";
-import PageHeader from "../../../../../components/backend/PageHeader";
-import TableAction from "../../../../../components/backend/TableAction";
+
+import TableAction from "@/components/backend/TableAction";
+import PageHeader from "@/components/backend/PageHeader";
 
 const page = () => {
   return (
