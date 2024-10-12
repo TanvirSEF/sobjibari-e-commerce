@@ -7,6 +7,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { generateCoupon } from "@/lib/generateCoupon";
+import ToggleInput from "@/components/Forminputs/ToggleInput";
 
 export default function NewCoupon() {
   const [loading, setLoading] = useState(false);
@@ -18,8 +19,12 @@ export default function NewCoupon() {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-
+  } = useForm({
+    defaultValues: {
+      isActive: true,
+    },
+  });
+  const isActive = watch("isActive");
   async function onSubmit(data) {
     const couponCode = generateCoupon(data.title);
     data.couponCode = couponCode;
@@ -47,6 +52,13 @@ export default function NewCoupon() {
             type="date"
             errors={errors}
             className="w-full"
+          />
+          <ToggleInput
+            label="Publish your Category"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
           />
         </div>
 

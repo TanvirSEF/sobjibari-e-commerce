@@ -5,6 +5,7 @@ import ImageInput from "@/components/Forminputs/ImageInput";
 import SubmitButton from "@/components/Forminputs/Submitbtn";
 import TextareaInput from "@/components/Forminputs/TextArea";
 import TextInput from "@/components/Forminputs/TextInput";
+import ToggleInput from "@/components/Forminputs/ToggleInput";
 import { generateSlug } from "@/lib/generateSlug";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -16,9 +17,15 @@ export default function NewCategory() {
   const {
     register,
     reset,
+    watch,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      isActive: true,
+    },
+  });
+  const isActive = watch("isActive");
   async function onSubmit(data) {
     const slug = generateSlug(data.title);
     data.slug = slug;
@@ -52,6 +59,13 @@ export default function NewCategory() {
             setImageUrl={setImageUrl}
             endpoint="imageUploader"
             label="Category Image"
+          />
+          <ToggleInput
+            label="Publish your Category"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
           />
         </div>
 

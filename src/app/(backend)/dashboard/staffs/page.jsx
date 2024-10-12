@@ -1,9 +1,21 @@
+import PageHeader from "@/components/backend/PageHeader";
+import TableAction from "@/components/backend/TableAction";
 import React from "react";
 
-export default function Staffs() {
+const Staffs = () => {
   return (
-    <>
-      <h2>staffs</h2>
-    </>
+    <div className="">
+      <PageHeader
+        heading="Our Staffs"
+        href="/dashboard/staffs/new"
+        linkTitle="Add Staffs"
+      />
+      <TableAction />
+      <div className="py-8">
+        <h2>Table</h2>
+      </div>
+    </div>
   );
-}
+};
+
+export default Staffs;

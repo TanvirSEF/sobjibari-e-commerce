@@ -7,6 +7,7 @@ import TextareaInput from "@/components/Forminputs/TextArea";
 import TextInput from "@/components/Forminputs/TextInput";
 import SelectInput from "@/components/Forminputs/SelectInput";
 import AddTags from "@/components/Forminputs/AddTags";
+import ToggleInput from "@/components/Forminputs/ToggleInput";
 import { generateSlug } from "@/lib/generateSlug";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -37,9 +38,15 @@ export default function NewProduct() {
   const {
     register,
     reset,
+    watch,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      isActive: true,
+    },
+  });
+  const isActive = watch("isActive");
   async function onSubmit(data) {
     const slug = generateSlug(data.title);
     data.slug = slug;
@@ -114,7 +121,14 @@ export default function NewProduct() {
             register={register}
             errors={errors}
           />
-          <AddTags setItems={setTags} items={tags} itemTitle="Tag"/>
+          <AddTags setItems={setTags} items={tags} itemTitle="Tag" />
+          <ToggleInput
+            label="Publish your Product"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
+          />
         </div>
 
         <SubmitButton

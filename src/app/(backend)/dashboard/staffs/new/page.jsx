@@ -1,17 +1,16 @@
 "use client";
 import FormHeader from "@/components/backend/FormHeader";
 import { makePostRequest } from "@/lib/apiRequest";
-import ImageInput from "@/components/Forminputs/ImageInput";
 import SubmitButton from "@/components/Forminputs/Submitbtn";
 import TextInput from "@/components/Forminputs/TextInput";
-import ToggleInput from "@/components/Forminputs/ToggleInput";
 import { generateSlug } from "@/lib/generateSlug";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
-export default function NewBanner() {
+export default function NewStaffs() {
   const [imageUrl, setImageUrl] = useState("");
+  const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -29,50 +28,62 @@ export default function NewBanner() {
     const slug = generateSlug(data.title);
     data.slug = slug;
     data.imageUrl = imageUrl;
+    data.tags = tags;
     console.log(data);
-    makePostRequest(setLoading, "api/banners", data, "Banner", reset);
+    makePostRequest(setLoading, "api/staffs", data, "Staffs", reset);
     setImageUrl("");
   }
   return (
     <div>
-      <FormHeader title="New Banner" />
+      <FormHeader title="New Staffs" />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3"
       >
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
           <TextInput
-            label="Banner Title"
-            name="title"
+            label="Staff Full Name"
+            name="name"
             register={register}
             errors={errors}
           />
           <TextInput
-            label="Banner Title"
-            name="link"
-            type="url"
+            label="Staff Email Address"
+            name="email"
+            type="email"
             register={register}
             errors={errors}
+            className="w-full"
           />
-          <ImageInput
-            imageUrl={imageUrl}
-            setImageUrl={setImageUrl}
-            endpoint="bannerImageUploader"
-            label="Banner Image"
-          />
-          <ToggleInput
-            label="Publish your Banner"
-            name="isActive"
-            trueTitle="Active"
-            falseTitle="Draft"
+          <TextInput
+            label="Password"
+            name="password"
             register={register}
+            type="password"
+            errors={errors}
+            className="w-full"
+          />
+          <TextInput
+            label="Staff Phone Number"
+            name="phone"
+            type="tel"
+            register={register}
+            errors={errors}
+            className="w-full"
+          />
+          <TextInput
+            label="Staff Present Address"
+            name="presentAddress"
+            register={register}
+            errors={errors}
+            className="w-full"
           />
         </div>
 
         <SubmitButton
           isLoading={loading}
-          buttonTitle="Create Banner"
-          loadingButtonTitle="Creating Banner Please Wait..."
+          buttonTitle="Create Staff"
+          loadingButtonTitle="Creating Staff Please Wait..."
         />
       </form>
     </div>
