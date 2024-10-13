@@ -1,16 +1,14 @@
 "use client";
 import FormHeader from "@/components/backend/FormHeader";
 import { makePostRequest } from "@/lib/apiRequest";
+import generateUserCode from "@/lib/generateUserCode";
 import SubmitButton from "@/components/Forminputs/Submitbtn";
 import TextInput from "@/components/Forminputs/TextInput";
-import { generateSlug } from "@/lib/generateSlug";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 export default function NewStaffs() {
-  const [imageUrl, setImageUrl] = useState("");
-  const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -18,20 +16,13 @@ export default function NewStaffs() {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      isActive: true,
-    },
-  });
-  const isActive = watch("isActive");
+  } = useForm();
+
   async function onSubmit(data) {
-    const slug = generateSlug(data.title);
-    data.slug = slug;
-    data.imageUrl = imageUrl;
-    data.tags = tags;
+    const code = generateUserCode("SBM", data.name);
+    data.code = code;
     console.log(data);
-    makePostRequest(setLoading, "api/staffs", data, "Staffs", reset);
-    setImageUrl("");
+    makePostRequest(setLoading, "api/staffs", data, "Staff", reset);
   }
   return (
     <div>
@@ -46,6 +37,24 @@ export default function NewStaffs() {
             name="name"
             register={register}
             errors={errors}
+          />
+          <TextInput
+            label="NID"
+            name="nid"
+            type="number"
+            register={register}
+            errors={errors}
+            isRequired={false}
+            className="w-full"
+          />
+          <TextInput
+            label="Date Of Birth"
+            name="DOB"
+            type="number"
+            register={register}
+            errors={errors}
+            isRequired={false}
+            className="w-full"
           />
           <TextInput
             label="Staff Email Address"

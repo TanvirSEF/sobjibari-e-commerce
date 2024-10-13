@@ -1,9 +1,21 @@
-import React from 'react'
+import PageHeader from "@/components/backend/PageHeader";
+import TableAction from "@/components/backend/TableAction";
+import React from "react";
 
-export default function Community() {
+const Category = () => {
   return (
-    <div>
-      <h2>Sobji bari</h2>
+    <div className="">
+      <PageHeader
+        heading="Sobji Bari Community"
+        href="/dashboard/community/new"
+        linkTitle="Add Training"
+      />
+      <TableAction />
+      <div className="py-8">
+        <h2>Table</h2>
+      </div>
     </div>
-  )
-}
+  );
+};
+
+export default Category;
