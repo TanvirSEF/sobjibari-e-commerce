@@ -7,7 +7,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { generateCoupon } from "@/lib/generateCoupon";
+import { generateisoFormattedDate } from "@/lib/generateisoFormattedDate";
 import ToggleInput from "@/components/Forminputs/ToggleInput";
+import { useRouter } from "next/navigation";
 
 export default function NewCoupon() {
   const [loading, setLoading] = useState(false);
@@ -25,11 +27,17 @@ export default function NewCoupon() {
     },
   });
   const isActive = watch("isActive");
+  const router = useRouter();
+  function redirect() {
+    router.push("/dashboard/coupons");
+  }
   async function onSubmit(data) {
     const couponCode = generateCoupon(data.title);
+    const isoFormattedDate = generateisoFormattedDate(data.expireDate);
+    data.expireDate = isoFormattedDate;
     data.couponCode = couponCode;
     console.log(data);
-    makePostRequest(setLoading, "api/coupons", data, "Coupon", reset);
+    makePostRequest(setLoading, "api/coupons", data, "Coupon", reset, redirect);
   }
   return (
     <div>
@@ -54,7 +62,7 @@ export default function NewCoupon() {
             className="w-full"
           />
           <ToggleInput
-            label="Publish your Category"
+            label="Publish your Coupon"
             name="isActive"
             trueTitle="Active"
             falseTitle="Draft"
