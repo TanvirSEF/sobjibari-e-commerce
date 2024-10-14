@@ -5,10 +5,10 @@ import ImageInput from "@/components/Forminputs/ImageInput";
 import SubmitButton from "@/components/Forminputs/Submitbtn";
 import TextInput from "@/components/Forminputs/TextInput";
 import ToggleInput from "@/components/Forminputs/ToggleInput";
-import { generateSlug } from "@/lib/generateSlug";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function NewBanner() {
   const [imageUrl, setImageUrl] = useState("");
@@ -24,13 +24,15 @@ export default function NewBanner() {
       isActive: true,
     },
   });
+  const router = useRouter();
+  function redirect() {
+    router.push("/dashboard/banners");
+  }
   const isActive = watch("isActive");
   async function onSubmit(data) {
-    const slug = generateSlug(data.title);
-    data.slug = slug;
     data.imageUrl = imageUrl;
     console.log(data);
-    makePostRequest(setLoading, "api/banners", data, "Banner", reset);
+    makePostRequest(setLoading, "api/banners", data, "Banner", reset, redirect);
     setImageUrl("");
   }
   return (
@@ -48,7 +50,7 @@ export default function NewBanner() {
             errors={errors}
           />
           <TextInput
-            label="Banner Title"
+            label="Banner Link"
             name="link"
             type="url"
             register={register}

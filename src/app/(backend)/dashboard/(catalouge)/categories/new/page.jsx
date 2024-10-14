@@ -10,6 +10,7 @@ import { generateSlug } from "@/lib/generateSlug";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function NewCategory() {
   const [imageUrl, setImageUrl] = useState("");
@@ -25,13 +26,24 @@ export default function NewCategory() {
       isActive: true,
     },
   });
+  const router = useRouter();
+  function redirect() {
+    router.push("/dashboard/categories");
+  }
   const isActive = watch("isActive");
   async function onSubmit(data) {
     const slug = generateSlug(data.title);
     data.slug = slug;
     data.imageUrl = imageUrl;
     console.log(data);
-    makePostRequest(setLoading, "api/categories", data, "Category", reset);
+    makePostRequest(
+      setLoading,
+      "api/categories",
+      data,
+      "Category",
+      reset,
+      redirect
+    );
     setImageUrl("");
   }
   return (
