@@ -5,7 +5,6 @@ import bcrypt from "bcrypt";
 export async function POST(request) {
   try {
     const { name, email, password, role } = await request.json();
-
     const existingUser = await db.user.findUnique({
       where: {
         email,

@@ -9,6 +9,7 @@ import SelectInput from "@/components/Forminputs/SelectInput";
 import AddTags from "@/components/Forminputs/AddTags";
 import ToggleInput from "@/components/Forminputs/ToggleInput";
 import { generateSlug } from "@/lib/generateSlug";
+import generateProduct from "@/lib/generateProduct";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -44,14 +45,19 @@ export default function NewProduct() {
   } = useForm({
     defaultValues: {
       isActive: true,
+      isWholesale: false,
     },
   });
   const isActive = watch("isActive");
+  const isWholesale = watch("isWholesale");
+  console.log(isActive);
   async function onSubmit(data) {
     const slug = generateSlug(data.title);
+    const productsCode = generateProduct("SFP", data.title);
     data.slug = slug;
     data.imageUrl = imageUrl;
     data.tags = tags;
+    data.productsCode = productsCode;
     console.log(data);
     makePostRequest(setLoading, "api/products", data, "Product", reset);
     setImageUrl("");
@@ -108,7 +114,40 @@ export default function NewProduct() {
             options={categories}
             className="w-full"
           />
-
+          <ToggleInput
+            label="Support Wholesale Selling"
+            name="isWholesale"
+            trueTitle="Supported"
+            falseTitle="Not Supported"
+            register={register}
+          />
+          {isWholesale && (
+            <>
+              <TextInput
+                label="Wholesale Price"
+                name="wholesalePrice"
+                register={register}
+                type="number"
+                errors={errors}
+                className="w-full"
+              />
+              <TextInput
+                label="Minimum Wholesale Quantity"
+                name="wholesaleQty"
+                register={register}
+                type="number"
+                errors={errors}
+                className="w-full"
+              />
+            </>
+          )}
+          <TextInput
+            label="Unit of Measurement(eg : Kilograms)"
+            name="unit"
+            register={register}
+            errors={errors}
+            className="w-full"
+          />
           <ImageInput
             imageUrl={imageUrl}
             setImageUrl={setImageUrl}
