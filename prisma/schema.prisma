@@ -87,8 +87,8 @@ model Training{
 
 enum UserRole{
   ADMIN
-  USER
   MODERATOR
+  CUSTOMER
 }
   
 
@@ -96,10 +96,11 @@ model User {
      id       String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   email         String?   @unique
+  password      String
   emailVerified DateTime?
   products Product[]
 
-  role          UserRole @default(USER)
+  role          UserRole @default(CUSTOMER)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
